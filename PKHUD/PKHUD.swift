@@ -18,7 +18,7 @@ open class PKHUD: NSObject {
 
     public var viewToPresentOn: UIView?
 
-    fileprivate var container: ContainerView = ContainerView()
+    fileprivate let container: ContainerView = ContainerView()
     fileprivate var hideTimer: Timer?
 
     public typealias TimerAction = (Bool) -> Void
