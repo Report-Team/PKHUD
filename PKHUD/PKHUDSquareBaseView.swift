@@ -25,7 +25,7 @@ open class PKHUDSquareBaseView: UIView {
     public init(image: UIImage? = nil, title: String? = nil, subtitle: String? = nil, isDark: Bool) {
         super.init(frame: PKHUDSquareBaseView.defaultSquareBaseViewFrame)
         self.imageView.image = image?.withRenderingMode(.alwaysTemplate)
-        self.imageView.tintColor = isDark ? .black : .white
+        self.imageView.tintColor = isDark ? .white : .black
         
         titleLabel.textColor = (isDark ? UIColor.white : UIColor.black).withAlphaComponent(0.85)
         subtitleLabel.textColor = (isDark ? UIColor.white : UIColor.black).withAlphaComponent(0.7)

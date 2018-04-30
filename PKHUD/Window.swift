@@ -14,17 +14,14 @@ internal class ContainerView: UIView {
 
     internal var frameView: FrameView!
     
-    var isDark: Bool = false
-    
-    internal init(frameView: FrameView, isDark: Bool) {
+    internal init(frameView: FrameView = FrameView()) {
         self.frameView = frameView
         super.init(frame: CGRect.zero)
-        self.isDark = isDark
         commonInit()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        frameView = FrameView(isDark: self.isDark)
+        frameView = FrameView()
         super.init(coder: aDecoder)
         commonInit()
     }

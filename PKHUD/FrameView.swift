@@ -12,9 +12,13 @@ import UIKit
 /// Provides the general look and feel of the PKHUD, into which the eventual content is inserted.
 internal class FrameView: UIVisualEffectView {
 
-    internal init(isDark: Bool) {
-        super.init(effect: UIBlurEffect(style: isDark ? .dark : .light))
+    internal init() {
+        super.init(effect: UIBlurEffect(style: .light))
         commonInit()
+    }
+    
+    public func changeEffect(isDark: Bool) {
+        effect = UIBlurEffect(style: isDark ? .dark : .light)
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -83,9 +83,9 @@ public final class HUD {
         case .error:
             return PKHUDErrorView(isDark: isDark)
         case .progress:
-            return PKHUDProgressView()
+            return PKHUDProgressView(isDark: isDark)
         case let .image(image):
-            return PKHUDSquareBaseView(image: image,isDark: isDark)
+            return PKHUDSquareBaseView(image: image, isDark: isDark)
         case let .rotatingImage(image):
             return PKHUDRotatingImageView(image: image, isDark: isDark)
 
@@ -94,7 +94,7 @@ public final class HUD {
         case let .labeledError(title, subtitle):
             return PKHUDErrorView(title: title, subtitle: subtitle, isDark: isDark)
         case let .labeledProgress(title, subtitle):
-            return PKHUDProgressView(title: title, subtitle: subtitle)
+            return PKHUDProgressView(title: title, subtitle: subtitle, isDark: isDark)
         case let .labeledImage(image, title, subtitle):
             return PKHUDSquareBaseView(image: image, title: title, subtitle: subtitle, isDark: isDark)
         case let .labeledRotatingImage(image, title, subtitle):

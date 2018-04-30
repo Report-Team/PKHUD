@@ -18,9 +18,7 @@ open class PKHUD: NSObject {
 
     public var viewToPresentOn: UIView?
 
-    fileprivate var container: ContainerView {
-        return ContainerView(frameView: FrameView(isDark: self.isDark), isDark: self.isDark)
-    }
+    fileprivate var container: ContainerView = ContainerView()
     fileprivate var hideTimer: Timer?
 
     public typealias TimerAction = (Bool) -> Void
@@ -95,7 +93,11 @@ open class PKHUD: NSObject {
         return !container.isHidden
     }
     
-    open var isDark: Bool = false
+    open var isDark: Bool = false {
+        didSet {
+            container.frameView.changeEffect(isDark: isDark)
+        }
+    }
 
     open var contentView: UIView {
         get {
