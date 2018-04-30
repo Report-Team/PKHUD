@@ -12,15 +12,19 @@ import UIKit
 /// The window used to display the PKHUD within. Placed atop the applications main window.
 internal class ContainerView: UIView {
 
-    internal let frameView: FrameView
-    internal init(frameView: FrameView = FrameView()) {
+    internal var frameView: FrameView!
+    
+    var isDark: Bool = false
+    
+    internal init(frameView: FrameView, isDark: Bool) {
         self.frameView = frameView
         super.init(frame: CGRect.zero)
+        self.isDark = isDark
         commonInit()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        frameView = FrameView()
+        frameView = FrameView(isDark: self.isDark)
         super.init(coder: aDecoder)
         commonInit()
     }

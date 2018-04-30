@@ -18,7 +18,9 @@ open class PKHUD: NSObject {
 
     public var viewToPresentOn: UIView?
 
-    fileprivate let container = ContainerView()
+    fileprivate var container: ContainerView {
+        return ContainerView(frameView: FrameView(isDark: self.isDark), isDark: self.isDark)
+    }
     fileprivate var hideTimer: Timer?
 
     public typealias TimerAction = (Bool) -> Void
@@ -60,6 +62,7 @@ open class PKHUD: NSObject {
             name: NSNotification.Name.UIApplicationWillEnterForeground,
             object: nil)
         userInteractionOnUnderlyingViewsEnabled = false
+        
         container.frameView.autoresizingMask = [ .flexibleLeftMargin,
                                                  .flexibleRightMargin,
                                                  .flexibleTopMargin,
@@ -91,6 +94,8 @@ open class PKHUD: NSObject {
     open var isVisible: Bool {
         return !container.isHidden
     }
+    
+    open var isDark: Bool = false
 
     open var contentView: UIView {
         get {

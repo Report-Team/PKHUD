@@ -16,6 +16,7 @@ class DemoViewController: UIViewController {
 
         HUD.dimsBackground = false
         HUD.allowsInteraction = false
+        HUD.isDark = true
     }
 
     @IBAction func showAnimatedSuccessHUD(_ sender: AnyObject) {

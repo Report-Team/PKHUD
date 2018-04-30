@@ -14,7 +14,7 @@ open class PKHUDErrorView: PKHUDSquareBaseView, PKHUDAnimating {
 
     var dashOneLayer = PKHUDErrorView.generateDashLayer()
     var dashTwoLayer = PKHUDErrorView.generateDashLayer()
-
+    
     class func generateDashLayer() -> CAShapeLayer {
         let dash = CAShapeLayer()
         dash.frame = CGRect(x: 0.0, y: 0.0, width: 88.0, height: 88.0)
@@ -27,14 +27,16 @@ open class PKHUDErrorView: PKHUDSquareBaseView, PKHUDAnimating {
         dash.lineCap     = kCALineCapRound
         dash.lineJoin    = kCALineJoinRound
         dash.fillColor   = nil
-        dash.strokeColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0).cgColor
+        dash.strokeColor = UIColor.black.withAlphaComponent(0.9).cgColor
         dash.lineWidth   = 6
         dash.fillMode    = kCAFillModeForwards
         return dash
     }
 
-    public init(title: String? = nil, subtitle: String? = nil) {
-        super.init(title: title, subtitle: subtitle)
+    public init(title: String? = nil, subtitle: String? = nil, isDark: Bool) {
+        super.init(title: title, subtitle: subtitle, isDark: isDark)
+        dashOneLayer.strokeColor = (isDark ? UIColor.white : UIColor.black).withAlphaComponent(0.9).cgColor
+        dashTwoLayer.strokeColor = (isDark ? UIColor.white : UIColor.black).withAlphaComponent(0.9).cgColor
         layer.addSublayer(dashOneLayer)
         layer.addSublayer(dashTwoLayer)
         dashOneLayer.position = layer.position

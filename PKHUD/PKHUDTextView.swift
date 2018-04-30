@@ -11,9 +11,12 @@ import UIKit
 
 /// PKHUDTextView provides a wide, three line text view, which you can use to display information.
 open class PKHUDTextView: PKHUDWideBaseView {
+    
+    var isDark: Bool = false
 
-    public init(text: String?) {
+    public init(text: String?, isDark: Bool) {
         super.init()
+        self.isDark = isDark
         commonInit(text)
     }
 
@@ -24,6 +27,7 @@ open class PKHUDTextView: PKHUDWideBaseView {
 
     func commonInit(_ text: String?) {
         titleLabel.text = text
+        titleLabel.textColor = (isDark ? UIColor.white : UIColor.black).withAlphaComponent(0.85)
         addSubview(titleLabel)
     }
 

@@ -25,13 +25,14 @@ open class PKHUDSuccessView: PKHUDSquareBaseView, PKHUDAnimating {
         layer.lineCap     = kCALineCapRound
         layer.lineJoin    = kCALineJoinRound
         layer.fillColor   = nil
-        layer.strokeColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0).cgColor
+        layer.strokeColor = UIColor.black.withAlphaComponent(0.9).cgColor
         layer.lineWidth   = 6.0
         return layer
     }()
 
-    public init(title: String? = nil, subtitle: String? = nil) {
-        super.init(title: title, subtitle: subtitle)
+    public init(title: String? = nil, subtitle: String? = nil, isDark: Bool) {
+        super.init(title: title, subtitle: subtitle, isDark: isDark)
+        checkmarkShapeLayer.strokeColor = (isDark ? UIColor.white : UIColor.black).withAlphaComponent(0.9).cgColor
         layer.addSublayer(checkmarkShapeLayer)
         checkmarkShapeLayer.position = layer.position
     }

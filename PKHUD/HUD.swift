@@ -38,12 +38,17 @@ public final class HUD {
         get { return PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled  }
         set { PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = newValue }
     }
+    
+    public static var isDark: Bool {
+        get { return PKHUD.sharedHUD.isDark  }
+        set { PKHUD.sharedHUD.isDark = newValue }
+    }
 
     public static var isVisible: Bool { return PKHUD.sharedHUD.isVisible }
 
     // MARK: Public methods, PKHUD based
     public static func show(_ content: HUDContentType, onView view: UIView? = nil) {
-        PKHUD.sharedHUD.contentView = contentView(content)
+        PKHUD.sharedHUD.contentView = contentView(content, isDark: PKHUD.sharedHUD.isDark)
         PKHUD.sharedHUD.show(onView: view)
     }
 
@@ -69,36 +74,36 @@ public final class HUD {
         HUD.show(content, onView: view)
         HUD.hide(afterDelay: delay, completion: completion)
     }
-
+    
     // MARK: Private methods
-    fileprivate static func contentView(_ content: HUDContentType) -> UIView {
+    fileprivate static func contentView(_ content: HUDContentType, isDark: Bool) -> UIView {
         switch content {
         case .success:
-            return PKHUDSuccessView()
+            return PKHUDSuccessView(isDark: isDark)
         case .error:
-            return PKHUDErrorView()
+            return PKHUDErrorView(isDark: isDark)
         case .progress:
             return PKHUDProgressView()
         case let .image(image):
-            return PKHUDSquareBaseView(image: image)
+            return PKHUDSquareBaseView(image: image,isDark: isDark)
         case let .rotatingImage(image):
-            return PKHUDRotatingImageView(image: image)
+            return PKHUDRotatingImageView(image: image, isDark: isDark)
 
         case let .labeledSuccess(title, subtitle):
-            return PKHUDSuccessView(title: title, subtitle: subtitle)
+            return PKHUDSuccessView(title: title, subtitle: subtitle, isDark: isDark)
         case let .labeledError(title, subtitle):
-            return PKHUDErrorView(title: title, subtitle: subtitle)
+            return PKHUDErrorView(title: title, subtitle: subtitle, isDark: isDark)
         case let .labeledProgress(title, subtitle):
             return PKHUDProgressView(title: title, subtitle: subtitle)
         case let .labeledImage(image, title, subtitle):
-            return PKHUDSquareBaseView(image: image, title: title, subtitle: subtitle)
+            return PKHUDSquareBaseView(image: image, title: title, subtitle: subtitle, isDark: isDark)
         case let .labeledRotatingImage(image, title, subtitle):
-            return PKHUDRotatingImageView(image: image, title: title, subtitle: subtitle)
+            return PKHUDRotatingImageView(image: image, title: title, subtitle: subtitle, isDark: isDark)
 
         case let .label(text):
-            return PKHUDTextView(text: text)
+            return PKHUDTextView(text: text, isDark: isDark)
         case .systemActivity:
-            return PKHUDSystemActivityIndicatorView()
+            return PKHUDSystemActivityIndicatorView(isDark: isDark)
         }
     }
 }

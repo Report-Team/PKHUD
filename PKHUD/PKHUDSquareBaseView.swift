@@ -22,9 +22,14 @@ open class PKHUDSquareBaseView: UIView {
         super.init(coder: aDecoder)
     }
 
-    public init(image: UIImage? = nil, title: String? = nil, subtitle: String? = nil) {
+    public init(image: UIImage? = nil, title: String? = nil, subtitle: String? = nil, isDark: Bool) {
         super.init(frame: PKHUDSquareBaseView.defaultSquareBaseViewFrame)
-        self.imageView.image = image
+        self.imageView.image = image?.withRenderingMode(.alwaysTemplate)
+        self.imageView.tintColor = isDark ? .black : .white
+        
+        titleLabel.textColor = (isDark ? UIColor.white : UIColor.black).withAlphaComponent(0.85)
+        subtitleLabel.textColor = (isDark ? UIColor.white : UIColor.black).withAlphaComponent(0.7)
+        
         titleLabel.text = title
         subtitleLabel.text = subtitle
 
